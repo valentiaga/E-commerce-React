@@ -1,4 +1,13 @@
 div{
-    justify-content: space-around;
+   
+    justify-content: center;
+    height: 80px;
+    align-items: center;
+}
+
+.navBar{
+    
+    position: absolute;
     width: 100%;
 }
+
