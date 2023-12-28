@@ -3,7 +3,7 @@ import './CartWidget.css'
 
 const CartWidget = () => {
     return (
-        <div>
+        <div className='divCart'>
             <span className="material-symbols-outlined">
                 shopping_cart
             </span>
