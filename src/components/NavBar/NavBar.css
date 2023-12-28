@@ -11,3 +11,7 @@ div{
     width: 100%;
 }
 
+.miDropdownItem:hover{
+    background-color: gray;
+    color: white; /* Puedes ajustar el color del texto según tus preferencias */
+}
