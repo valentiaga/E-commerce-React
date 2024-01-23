@@ -1,61 +1,40 @@
-import React from 'react'
-import CartWidget from '../CartWidget/CartWidget'
-import './NavBar.css'
-import { useState } from 'react'
-const NavBar = () => {
-    const [clicked, setClicked] = useState(false);
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import './NavBar.css';
 
-    const handleClick = () => {
-        setClicked(true);
-    };
-
-    const itemClasses = `dropdown-item miDropdownItem ${clicked ? 'clicked' : ''}`;
+function BasicExample() {
     return (
-        <div className='navBar'>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a className="navbar-brand" href="#">Jinetes</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ulNavBar">
-                            <li class="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Inicio</a>
-                            </li>
-                            
-                            <li class="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Categorías
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a className={itemClasses} href="#" onClick={handleClick}>
-                                            Almohadones
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className={itemClasses} href="#" onClick={handleClick}>
-                                            Velas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className={itemClasses} href="#" onClick={handleClick}>
-                                            Cuadros
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Sobre nosotros</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <CartWidget></CartWidget>
-                </div>
-            </nav>
-        </div>
-    )
+        <Navbar expand="lg" className="bg-body-tertiary miNavBar">
+            <Container>
+                <Navbar.Brand href="#home" className='logo'>Tiaga Club</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto miNav">
+                        <Nav.Link href="/" className='text-white'>Inicio</Nav.Link>
+                        <Nav.Link href="/nosotros" className='text-white'>Sobre Nosotros</Nav.Link>
+                        <NavDropdown title="Colección" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/category/1">Remeras</NavDropdown.Item>
+                            <NavDropdown.Item href="/category/2">
+                                Pantalones
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="/category/3">Polleras</NavDropdown.Item>
+                            <NavDropdown.Item href="/category/4">Accesorios</NavDropdown.Item>
+                            <NavDropdown.Item href="/category/5">Buzos</NavDropdown.Item>
+                            <NavDropdown.Item href="/category/6">Sacos</NavDropdown.Item>
+                            <NavDropdown.Item href="/category/7">Bikinis</NavDropdown.Item>
+
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">
+                                SALE
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 }
 
-export default NavBar
+export default BasicExample;

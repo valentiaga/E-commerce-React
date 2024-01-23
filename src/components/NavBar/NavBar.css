@@ -1,17 +1,31 @@
-div{
-   
+.miNav{
+    width: 100%;
     justify-content: center;
     height: 80px;
     align-items: center;
+    gap: 20px;
 }
 
-.navBar{
+/* .navBar{
     
     position: absolute;
     width: 100%;
+} */
+.miNavBar{
+    background-color: black !important;
 }
 
-.miDropdownItem:hover{
-    background-color: gray;
-    color: white; /* Puedes ajustar el color del texto según tus preferencias */
+#basic-nav-dropdown{
+    color: white !important;
 }
+
+.logo{
+    color: white;
+    font-size: xx-large;
+    font-family: 'Alegreya Sans SC', sans-serif; 
+}
+/* Oculta el elemento con la clase 'z-10' */
+
+
+/* O si deseas basarte en el atributo 'data-testid' */
+
