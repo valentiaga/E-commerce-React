@@ -3,7 +3,8 @@ import './Item.css'
 import { Link } from 'react-router-dom'
 
 //componente para mostrar informacion 
-const Item = ({id, nombre, precio, img}) => {
+const Item = ({id, nombre, precio, img, stock}) => {
+
   return (
     <div className='cardProducto'>
         <img src={img} alt={nombre} />
@@ -11,7 +12,7 @@ const Item = ({id, nombre, precio, img}) => {
         <p>ID: {id}</p>
         <p>Precio: $ {precio}</p>
         <Link to={`/item/${id}`}>Ver detalles</Link>
-        <button>Añadir al carrito</button>
+
     </div>
   )
 }

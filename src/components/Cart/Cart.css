@@ -1,0 +1,4 @@
+.divCart {
+    display: flex;
+    flex-direction: column;
+}

@@ -7,3 +7,8 @@
 img{
     height: 200px;
 }
+
+.agrega-cantidad{
+    display: flex;
+    flex-direction: column;
+}
