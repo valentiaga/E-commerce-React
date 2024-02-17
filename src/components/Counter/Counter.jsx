@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
+import './Counter.css';
 
 const Counter = ({ inicial, stock, funcionAgregar }) => {
 
@@ -18,12 +20,14 @@ const Counter = ({ inicial, stock, funcionAgregar }) => {
 
     return (
         <>
-            <div>
-                <button onClick={decrementar}> - </button>
+            <div className="counter-flex">
+                <Button onClick={decrementar} variant="secondary">-</Button>
                 <p> {contador} </p>
-                <button onClick={incrementar}> + </button>
+                <Button onClick={incrementar} variant="secondary">+</Button>
+
             </div>
-            <button onClick={() => funcionAgregar(contador)}> Agregar al Carrito </button>
+            <Button className="add-button" onClick={() => funcionAgregar(contador)} variant="dark">Agregar al carrito</Button>{' '}
+            
         </>
     )
 }

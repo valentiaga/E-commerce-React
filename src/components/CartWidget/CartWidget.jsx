@@ -1,16 +1,24 @@
-import React from 'react'
+import { useContext } from 'react';
+import { ChartContext } from '../../context/ChartContext';
+import { Link } from 'react-router-dom';
 import './CartWidget.css'
 
 const CartWidget = () => {
+
+    const { cantidadTotal } = useContext(ChartContext);
+
     return (
-        <div className='divCart'>
-            <span className="material-symbols-outlined" style={{ color: 'white' }} >
-                shopping_cart
-            </span>
-            <span className="material-symbols-outlined counter" style={{ color: 'white' }} >
-                counter_1
-            </span>
-        </div>
+        <Link to='/cart' style={{ color: 'white', textDecoration: 'none' }}>
+            <div className='divCart'>
+                <span className="material-symbols-outlined" style={{ color: 'white' }} >
+                    shopping_cart
+                </span>
+             
+                {
+                    cantidadTotal > 0 && <p style={{ textDecoration: 'underline' }}> { cantidadTotal } </p>
+                }
+            </div>
+        </Link>
     )
 }
 

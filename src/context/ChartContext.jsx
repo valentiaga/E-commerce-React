@@ -19,7 +19,6 @@ export const ChartProvider = ({children}) => {
     console.log('Monto total de la compra: $ ' + total);
 
     //Funcion agregar Producto al carrito
-
     const agregarAlCarrito = ( item, cantidad ) => {
         console.log(item);
         const productoExistente = carrito.find(prod => prod.item.id === item.id);
@@ -46,7 +45,6 @@ export const ChartProvider = ({children}) => {
 
 
     //función para eliminar productos del carrito
-
     const eliminarProducto = (id) => {
         //me guardo una referencia de producto que vamos a borrar 
         const productoEliminado = carrito.find(prod => prod.item.id === id);

@@ -1,39 +1,69 @@
 import React from 'react'
 import './ItemDetail.css';
 import { Link } from 'react-router-dom'
-//1) Importamos el carrito context
 import { ChartContext } from '../../context/ChartContext';
-//importo el useContext
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Counter from '../Counter/Counter';
+import Button from 'react-bootstrap/Button';
+import Toast from 'react-bootstrap/Toast';
 
-const ItemDetail = ({id, nombre, precio, img, stock}) => {
+const ItemDetail = ({ id, nombre, precio, img, stock, desc }) => {
   //Creamos  un estado local con la cantidad de productos agregados. 
   const [agregarCantidad, setAgregarCantidad] = useState(0);
-  const {agregarAlCarrito} = useContext(ChartContext);
+  const { agregarAlCarrito } = useContext(ChartContext);
+  const [mostrarToast, setMostrarToast] = useState(false);
+
+  useEffect(() => {
+    if (agregarCantidad > 0) {
+      setMostrarToast(true);
+      const timeoutId = setTimeout(() => {
+        setMostrarToast(false);
+      }, 3000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [agregarCantidad]);
 
 
-  //Creamos una función manejadora de la cantidad
-  const manejadorCantidad =  (cantidad) => {
+  const manejadorCantidad = (cantidad) => {
+
     setAgregarCantidad(cantidad);
-    console.log("Productos agregados: " + cantidad);
     //voy a crear un objeto con el item y la cantidad
-    const item = { id, nombre, precio};
+    const item = { id, nombre, precio };
     agregarAlCarrito(item, cantidad);
+
   }
 
   return (
-    <div className='contenedorItem'>
-      <h2>Nombre: {nombre} </h2>
-      <h3>Precio: {precio} </h3>
-      <p>ID: {id} </p>
-      <p>Stock: {stock} </p>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto ea eum in consequatur nesciunt dolores nam, fugiat eligendi ipsa esse quod voluptatem accusamus facere natus! Numquam expedita ut repellendus inventore!</p>
+    <div className='contenedor-item'>
+
       <img src={img} alt={nombre} />
 
-      {
-        agregarCantidad > 0 ? (<div className='.agrega-cantidad'><Link to="/cart"> Terminar compra</Link><Link to="/"> Ver más productos </Link></div>) : (<Counter incial = {1} stock = {stock} funcionAgregar = {manejadorCantidad} />)
-      }
+      <div className='info-prod'>
+        <h2> {nombre} </h2>
+        <h3> $ {precio} </h3>
+        <span className='span'> </span>
+        {/* <p>Stock: {stock} </p> */}
+        {
+          agregarCantidad > 0 ? (<div className='agrega-prod'><Link to="/cart"><Button className='boton-fin' variant="dark">Terminar compra</Button></Link><Link to="/"><Button variant="dark">Ver más productos</Button> </Link></div>) : (<div><Counter inicial={1} stock={stock} funcionAgregar={manejadorCantidad} /><p> {desc} </p></div>)
+        }
+        {mostrarToast && (
+          <Toast
+          show={mostrarToast}
+          onClose={() => setMostrarToast(false)}
+          className="position-absolute top-0 end-0 mt-2 mr-2"
+        >
+            <Toast.Header>
+              <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+              <strong className="me-auto">Listo!</strong>
+              <small>:)</small>
+            </Toast.Header>
+            <Toast.Body>Ya tenés tu producto en el carrito!  </Toast.Body>
+          </Toast>
+        )}
+
+      </div>
+
+
 
     </div>
   )
